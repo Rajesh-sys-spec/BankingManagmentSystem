@@ -1,0 +1,80 @@
+from datetime import datetime
+
+account_name = "Rajesh Reddy"
+account_number = "1001"
+balance = 5000.00
+transactions = []
+
+def show_account():
+    print("\nAccount Holder:", account_name)
+    print("Account Number:", account_number)
+
+def check_balance():
+    print("\nCurrent Balance: Rs.", balance)
+
+def deposit():
+    global balance
+    amount = float(input("Enter deposit amount: Rs. "))
+
+    if amount > 0:
+        balance += amount
+        transactions.append(
+            f"Deposit: Rs. {amount:.2f}"
+        )
+        print("Deposit successful!")
+    else:
+        print("Invalid amount!")
+
+def withdraw():
+    global balance
+    amount = float(input("Enter withdrawal amount: Rs. "))
+
+    if amount <= 0:
+        print("Invalid amount!")
+    elif amount > balance:
+        print("Insufficient balance!")
+    else:
+        balance -= amount
+        transactions.append(
+            f"Withdrawal: Rs. {amount:.2f}"
+        )
+        print("Withdrawal successful!")
+
+def transaction_history():
+    print("\nTransaction History")
+
+    if not transactions:
+        print("No transactions available.")
+    else:
+        for transaction in transactions:
+            print(transaction)
+
+def main():
+    while True:
+        print("\n--- Banking Management System ---")
+        print("1. Account Information")
+        print("2. Check Balance")
+        print("3. Deposit Money")
+        print("4. Withdraw Money")
+        print("5. Transaction History")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            show_account()
+        elif choice == "2":
+            check_balance()
+        elif choice == "3":
+            deposit()
+        elif choice == "4":
+            withdraw()
+        elif choice == "5":
+            transaction_history()
+        elif choice == "6":
+            print("Thank you for using the system!")
+            break
+        else:
+            print("Invalid choice!")
+
+main()
